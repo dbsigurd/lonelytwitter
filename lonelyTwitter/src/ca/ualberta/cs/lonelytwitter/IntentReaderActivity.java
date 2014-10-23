@@ -1,9 +1,9 @@
 package ca.ualberta.cs.lonelytwitter;
 
-import android.os.Bundle;
-import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
 
 public class IntentReaderActivity extends Activity {
 
@@ -27,9 +27,18 @@ public class IntentReaderActivity extends Activity {
 		setContentView(R.layout.activity_intent_reader);
 		
 		//TODO: Add your code here:
-
+		Intent intent = getIntent();
+		mode = intent.getIntExtra(MODE_OF_TRANSFORM_KEY, NORMAL);
+		if(intent.getStringExtra(TEXT_TO_TRANSFORM_KEY) != null){
+			text = transformText(intent.getStringExtra(TEXT_TO_TRANSFORM_KEY));
+		}else{
+			text= "defaul text";
+		}
+		((TextView)findViewById(R.id.intentText)).setText(text);
+		
+		
 	}
-
+	
 	public String transformText(String str) {
 		switch (mode) {
 			case REVERSE:
